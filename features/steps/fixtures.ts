@@ -4,8 +4,7 @@ type Fixtures = {
   // set types of your fixtures
 };
 
-export const test = base.extend<Fixtures>({
-  // add your fixtures
-});
 
+export const test = base.extend<Fixtures>({});
 export const { Given, When, Then } = createBdd(test);
+export const expect = test.expect;

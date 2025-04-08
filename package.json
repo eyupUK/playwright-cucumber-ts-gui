@@ -2,7 +2,8 @@
   "name": "playwright-bdd-example",
   "version": "0.1.0",
   "scripts": {
-    "test": "npx bddgen && npx playwright test",
+    "test": "npx bddgen && cross-env ENV=test npx playwright test",
+    "test:glasgow": "npx bddgen && cross-env ENV=glasgow npx playwright test",
     "report": "npx http-server ./cucumber-report -c-1 -a localhost -o index.html",
     "watch:bdd": "nodemon -w ./features -e feature,js,ts --exec \"npx bddgen\"",
     "watch:pw": "playwright test --ui",
@@ -17,7 +18,10 @@
     "playwright-bdd": "^8.2.1",
     "prettier": "3.4.2",
     "prettier-plugin-gherkin": "^3.1.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "dotenv": "^16.4.7",
+    "dotenv-cli": "^8.0.0",
+    "cross-env": "^7.0.3"
   },
   "license": "MIT"
 }

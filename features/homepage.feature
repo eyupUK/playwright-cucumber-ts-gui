@@ -1,6 +1,8 @@
 Feature: Playwright Home Page
 
-  Scenario: Check title
-    Given I am on Playwright home page
-    When I click link "Get started"
-    Then I see in title "Installation"
+
+  Scenario: Successful login with valid credentials
+        Given I am on the login page
+        When I enter valid username and password "standard_user" and "secret_sauce"
+        And I click on the login button
+        Then I verify that logged in successfully

@@ -2,8 +2,11 @@ import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 
 const testDir = defineBddConfig({
-  features: 'features/*.feature',
-  steps: 'features/steps/*.ts',
+  features: 'features/*.feature', // Path to your .feature files
+  steps: [
+    './features/steps/fixtures.ts', // Explicitly include the fixtures file
+    './stepDefinitions/**/*.ts',    // Include all step definition files
+  ],
 });
 
 export default defineConfig({
@@ -18,11 +21,17 @@ export default defineConfig({
   use: {
     screenshot: 'on',
     trace: 'on',
+    headless: false,
+    viewport: {width: 1920, height: 1080},
   },
   projects: [
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'firefox',
+      use: { ...devices['Desktop firefox'] },
     },
   ],
 });
