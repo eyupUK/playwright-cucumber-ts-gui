@@ -11,15 +11,10 @@ Given('I am on the login page', async ({page}) => {
     getEnv();
     loginPage = new LoginPage(page);
     await loginPage.naviagateToLoginPage();
-    
-    
-
   });
   
   When('I enter valid username and password {string} and {string}', async ({}, username, password) => {
-    
     await loginPage.loginWithValidCredentials(username, password);
-
   });
   
   When('I click on the login button', async ({}) => {
