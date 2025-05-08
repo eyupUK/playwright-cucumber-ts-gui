@@ -1,3 +1,4 @@
+import exp from 'constants';
 import { Given, When, Then } from '../features/fixture/fixtures';
 
 
@@ -22,9 +23,8 @@ Given('I am on the login page', async ({ logger, page }) => {
     logger.info("Clicking on the login button");
   });
   
-  Then('I verify that logged in successfully', async ({ logger, $test }) => {
-    
+  Then('I verify that logged in successfully', async ({ logger, page }) => {
+    expect(await page.url()).toContain("browser");
     logger.info("Verifying that logged in successfully");
-    logger.pass("Logged in successfully: " + $test.info().title);
   });
   

@@ -10,8 +10,6 @@ const testDir = defineBddConfig({
 });
 
 export default defineConfig({  
-  // globalSetup: require.resolve('./stepDefinitions/global.setup.ts'),
-  // globalTeardown: require.resolve('./stepDefinitions/global.teardown.ts'),
   testDir,
   reporter: [
     cucumberReporter('html', {
@@ -30,22 +28,13 @@ export default defineConfig({
   use: {
     screenshot: 'on',
     trace: 'on',
-    headless: false,
+    headless: process.env.HEADLESS === "true" || false,
     viewport: {width: 1920, height: 1080},
   },
   projects: [
     // {
-    //   name: 'setup db',
-    //   testMatch: 'global.setup.ts',
-    // },
-    // {
-    //   name: 'cleanup db',
-    //   testMatch: 'global.teardown.ts',
-    // },
-    // {
-    //   name: 'chromium with db',
-    //   use: { ...devices['Desktop firefox'] },
-    //   dependencies: ['setup db'],
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop chromium'] },
     // },
     {
       name: 'firefox',

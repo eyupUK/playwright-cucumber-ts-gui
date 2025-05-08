@@ -42,9 +42,12 @@ Before(async function ({ logger }){
 After(async ({ logger, $test }) => {
   logger.info("After each test");
   if ($test.info().status === "failed") {
-    logger.fail("Test failed: " + $test.info().title);
+    logger.fail("Test Failed: " + $test.info().title);
   }
-  else logger.debug("Test completed: " + $test.info().status);
+  else if ($test.info().status === "passed") {
+    logger.pass("Test Passed: " + $test.info().title);
+  }
+  else logger.debug("Test completed: " + $test.info().status?.toUpperCase());
   // Add your test cleanup logic here
   // For example, you can close the page or perform actions
 });
