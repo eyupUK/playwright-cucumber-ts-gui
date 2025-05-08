@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 
+const headless = process.env.HEADLESS === "true" ? true : false || false;
+
 const testDir = defineBddConfig({
   features: 'features/*.feature', // Path to your .feature files
   steps: [
@@ -28,7 +30,7 @@ export default defineConfig({
   use: {
     screenshot: 'on',
     trace: 'on',
-    headless: process.env.HEADLESS === "true" || false,
+    headless: headless,
     viewport: {width: 1920, height: 1080},
   },
   projects: [

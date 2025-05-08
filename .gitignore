@@ -18,6 +18,7 @@ test-results
 playwright-report
 cucumber-report
 **/.features-gen/**/*.spec.js
+allure-results
 
 .nx
 
