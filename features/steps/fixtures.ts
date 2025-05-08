@@ -6,5 +6,5 @@ type Fixtures = {
 
 
 export const test = base.extend<Fixtures>({});
-export const { Given, When, Then } = createBdd(test);
+export const { Given, When, Then, BeforeAll, AfterAll, Before, After, BeforeStep, AfterStep } = createBdd(test);
 export const expect = test.expect;
