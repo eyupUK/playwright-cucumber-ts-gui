@@ -4,7 +4,7 @@ import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 const testDir = defineBddConfig({
   features: 'features/*.feature', // Path to your .feature files
   steps: [
-    './features/steps/fixtures.ts', // Explicitly include the fixtures file
+    './features/fixture/fixtures.ts', // Explicitly include the fixtures file
     './stepDefinitions/**/*.ts',    // Include all step definition files
   ],
 });
@@ -19,6 +19,13 @@ export default defineConfig({
       externalAttachments: true,
     }),
     ['html', { open: 'never' }],
+    [
+      'allure-playwright',
+      {
+        outputFolder: 'allure-results', //run 'allure generate ./allure-results --clean -o ./allure-report' and 'allure serve ./allure-results' respectively for Allure reporting
+        suiteTitle: true,
+      },
+    ],
   ],
   use: {
     screenshot: 'on',

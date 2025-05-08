@@ -1,30 +1,30 @@
-import { Given, When, Then } from '../features/steps/fixtures';
+import { Given, When, Then } from '../features/fixture/fixtures';
 
 
 import { LoginPage } from '../pages/loginPage';
-import { getEnv } from '../support/env/env';
 import { expect } from '@playwright/test';
 
 let loginPage: LoginPage;
 
-Given('I am on the login page', async ({page}) => {
-    
-    getEnv();
+Given('I am on the login page', async ({ logger, page }) => {
+  logger.info("Navigating to the login page");
     loginPage = new LoginPage(page);
     await loginPage.naviagateToLoginPage();
   });
   
-  When('I enter valid username and password {string} and {string}', async ({}, username, password) => {
+  When('I enter valid username and password {string} and {string}', async ({ logger }, username, password) => {
+    logger.info("Entering valid username and password");
     await loginPage.loginWithValidCredentials(username, password);
   });
   
-  When('I click on the login button', async ({}) => {
+  When('I click on the login button', async ({ logger }) => {
     
-    console.log("Clicking on the login button");
+    logger.info("Clicking on the login button");
   });
   
-  Then('I verify that logged in successfully', async ({}) => {
+  Then('I verify that logged in successfully', async ({ logger, $test }) => {
     
-    console.log("Verifying that logged in successfully");
+    logger.info("Verifying that logged in successfully");
+    logger.pass("Logged in successfully: " + $test.info().title);
   });
   
