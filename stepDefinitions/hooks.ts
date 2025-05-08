@@ -30,6 +30,8 @@ BeforeStep(async ({ logger, $step }) => {
   // For example, you can log the step or perform some actions
 });
 
+
+//================================================================
 // This is a global teardown file
 // It will be executed after all tests in the project are completed
 // It is useful for cleaning up resources, closing connections, etc.
