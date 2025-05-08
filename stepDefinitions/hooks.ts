@@ -1,5 +1,5 @@
 import { test } from "playwright-bdd";
-import { After, AfterAll, Before, BeforeAll } from "../features/fixture/fixtures";
+import { After, AfterAll, Before, BeforeAll, BeforeStep, AfterStep } from "../features/fixture/fixtures";
 import { getEnv } from "../support/env/env";
 import { options } from "../support/logger/logger";
 
@@ -24,20 +24,20 @@ Before(async function ({ logger }){
   // For example, you can navigate to a specific page or perform actions
 });
 
-// BeforeStep(async ({ logger }) => {
-//   logger.info(`Starting step`);
-//   // Add any setup logic you want to run before each step
-//   // For example, you can log the step or perform some actions
-// });
+BeforeStep(async ({ logger, $step }) => {
+  logger.info(`Starting  step to: ${$step.title}`);
+  // Add any setup logic you want to run before each step
+  // For example, you can log the step or perform some actions
+});
 
-// // This is a global teardown file
-// // It will be executed after all tests in the project are completed
-// // It is useful for cleaning up resources, closing connections, etc.
-// AfterStep(async ({  logger }) => {
-//   logger.info(`Step completed`);
-//   // Add any cleanup logic you want to run after each step
-//   // For example, you can log the step or perform some actions
-// });
+// This is a global teardown file
+// It will be executed after all tests in the project are completed
+// It is useful for cleaning up resources, closing connections, etc.
+AfterStep(async ({  logger }) => {
+  logger.info(`Step completed`);
+  // Add any cleanup logic you want to run after each step
+  // For example, you can log the step or perform some actions
+});
 
 After(async ({ logger, $test }) => {
   logger.info("After each test");

@@ -17,5 +17,5 @@ const test = base.extend<Fixtures>({
     }
 });
 export { test };
-export const { Given, When, Then, BeforeAll, AfterAll, Before, After } = createBdd(test);
+export const { Given, When, Then, BeforeAll, AfterAll, Before, After, BeforeStep, AfterStep } = createBdd(test);
 export const expect = test.expect;
