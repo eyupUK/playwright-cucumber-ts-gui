@@ -1,7 +1,6 @@
 import { test } from "playwright-bdd";
 import { After, AfterAll, Before, BeforeAll, BeforeStep, AfterStep } from "../features/fixture/fixtures";
 import { getEnv } from "../support/env/env";
-import { options } from "../support/logger/logger";
 
 
 
