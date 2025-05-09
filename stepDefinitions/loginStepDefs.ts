@@ -1,9 +1,8 @@
-import exp from 'constants';
 import { Given, When, Then } from '../features/fixture/fixtures';
+import { test, expect } from "../features/fixture/fixtures";
 
 
 import { LoginPage } from '../pages/loginPage';
-import { expect } from '@playwright/test';
 
 let loginPage: LoginPage;
 
