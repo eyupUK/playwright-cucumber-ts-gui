@@ -18,7 +18,6 @@ Given('I am on the login page', async ({ logger, page }) => {
   });
   
   When('I click on the login button', async ({ logger }) => {
-    
     logger.info("Clicking on the login button");
   });
   
