@@ -1,17 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 
-const headless = process.env.HEADLESS === "true" ? true : false || false;
+declare const process: { env?: { [key: string]: string | undefined } };
+
+const headless = process.env?.HEADLESS === 'true';
 
 const testDir = defineBddConfig({
   features: 'features/*.feature', // Path to your .feature files
   steps: [
     './features/fixture/fixtures.ts', // Explicitly include the fixtures file
-    './stepDefinitions/**/*.ts',    // Include all step definition files
+    './stepDefinitions/**/*.ts', // Include all step definition files
   ],
 });
 
-export default defineConfig({  
+export default defineConfig({
   testDir,
   reporter: [
     cucumberReporter('html', {
@@ -31,7 +33,7 @@ export default defineConfig({
     screenshot: 'on',
     trace: 'on',
     headless: headless,
-    viewport: {width: 1920, height: 1080},
+    viewport: { width: 1920, height: 1080 },
   },
   projects: [
     // {

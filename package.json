@@ -8,7 +8,9 @@
     "report": "npx http-server ./cucumber-report -c-1 -a localhost -o index.html",
     "watch:bdd": "nodemon -w ./features -e feature,js,ts --exec \"npx bddgen\"",
     "watch:pw": "playwright test --ui",
-    "watch": "run-p watch:*"
+    "watch": "run-p watch:*",
+    "clean": " rm -rf ./cucumber-report && rm -rf ./allure-results && rm -rf ./allure-report && rm -rf ./test-results && rm -rf ./playwright-report",
+    "prettier": "prettier --write '**/*.{ts,js,json,md,feature}'"
   },
   "devDependencies": {
     "@playwright/test": "^1.50.0",

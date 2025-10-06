@@ -3,7 +3,7 @@
 Example project that uses [playwright-bdd](https://github.com/vitalets/playwright-bdd) to run BDD tests.
 
 > [!IMPORTANT]
-> If you are using [Yarn Plug'n'Play](https://yarnpkg.com/features/pnp), please check out [yarn-pnp](https://github.com/vitalets/playwright-bdd-example/tree/yarn-pnp) branch. 
+> If you are using [Yarn Plug'n'Play](https://yarnpkg.com/features/pnp), please check out [yarn-pnp](https://github.com/vitalets/playwright-bdd-example/tree/yarn-pnp) branch.
 
 ## How to report a bug
 

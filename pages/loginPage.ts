@@ -1,36 +1,53 @@
 import { Page } from '@playwright/test';
+import { BasePage } from './base.page';
 
+export class LoginPage extends BasePage {
+  constructor(page: Page) {
+    super(page);
+  }
 
+  private readonly Elements = {
+    logonBtn: this.page.locator('#logInButton'),
+    usernameInput: this.page.locator('#user-name'),
+    passwordInput: this.page.locator('#password'),
+    submitBtn: this.page.locator('#login-button'),
+    errorMsg: this.page.locator("h3[data-test='error']"),
+  };
 
+  getElements() {
+    return this.Elements;
+  }
 
-export class LoginPage {
-    public page: Page;
+  async loginWithValidCredentials(username: string, password: string): Promise<void> {
+    await this.fill(this.Elements.usernameInput, username);
+    await this.fill(this.Elements.passwordInput, password);
+    await this.click(this.Elements.submitBtn);
+  }
 
-    public logonBtn;
-    public usernnameInput;
-    public passwordInput;
-    public submitBtn;
-
-    constructor(page: Page) {
-        
-        this.page = page;
-        this.logonBtn = page.locator("#logInButton");
-        this.usernnameInput = page.locator("#user-name");
-        this.passwordInput = page.locator("#password");
-        this.submitBtn = page.locator("#login-button");
+  async navigateToLoginPage(): Promise<void> {
+    if (!process.env.BASEURL) {
+      throw new Error('BASEURL is not defined in the environment variables.');
     }
+    await this.goto(process.env.BASEURL);
+  }
 
-    async loginWithValidCredentials(username: string, password: string) {
-        await this.usernnameInput.fill(username);
-        await this.passwordInput.fill(password);
-        await this.submitBtn.click();
-    }
+  async getTitle() {
+    return this.page.locator('.title').innerText();
+  }
 
-    async naviagateToLoginPage() {
-        if (!process.env.BASEURL) {
-            throw new Error("BASEURL is not defined in the environment variables.");
-        }
-        await this.page.goto(process.env.BASEURL);     
-    }
-    
+  async fillLogin(username: string, password: string) {
+    await this.page.waitForLoadState();
+    await this.Elements.usernameInput.fill(username);
+    await this.Elements.passwordInput.fill(password);
+    console.log('login filled');
+  }
+
+  async clickLogin() {
+    await this.Elements.logonBtn.click();
+    console.log('Login clicked');
+  }
+
+  async getErrorMessage() {
+    return this.Elements.errorMsg.innerText();
+  }
 }
